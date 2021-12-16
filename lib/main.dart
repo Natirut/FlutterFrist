@@ -1,5 +1,8 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/pages/about/about.dart';
+import 'package:flutter_app1/pages/camera/takeimg.dart';
+import 'package:flutter_app1/pages/rowcolumn/rowcolumn.dart';
 import "package:fluttertoast/fluttertoast.dart";
 
 void main() => runApp(const MyApp());
@@ -29,22 +32,41 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // final textFieldController = TextEditingController();
-  String username = "";
-  String password = "";
+  String uusername = "";
+  String ppassword = "";
 
   void checklogin() {
-    if (username == "" || password == "") {
+    if (uusername == "" || ppassword == "") {
       Fluttertoast.showToast(msg: "USER OR PASS", fontSize: 16.0);
     } else {
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => AboutPage(
-                    username: username,
-                    password: password,
+                    username: uusername,
+                    password: ppassword,
                   )));
     }
   }
+
+  void showgrid() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const RowColumn(
+                // username: uusername,
+                // password: ppassword,
+                )));
+  }
+
+  // void opencamera() {
+  //   Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) =>  const TakePictureScreen(
+  //                camera: uusername,
+  //               )));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -63,28 +85,28 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               child: TextField(
                 onChanged: (value) {
-                  username = value;
+                  uusername = value;
                   // Fluttertoast.showToast(msg: value, fontSize: 16.0);
                 },
                 //  controller: textFieldController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Username',
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               child: TextField(
                 onChanged: (value) {
-                  password = value;
+                  ppassword = value;
                   // Fluttertoast.showToast(msg: value, fontSize: 16.0);
                 },
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                 ),
@@ -99,6 +121,14 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: checklogin,
               child: const Text("Login"),
             ),
+            OutlinedButton(
+              onPressed: showgrid,
+              child: const Text("ShowGrid"),
+            ),
+            //     OutlinedButton(
+            //   onPressed: opencamera,
+            //   child: const Text("OpenCamera"),
+            // ),
           ],
         ),
       ),

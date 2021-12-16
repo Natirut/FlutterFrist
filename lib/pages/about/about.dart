@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/pages/contract/contract.dart';
 
 class AboutPage extends StatelessWidget {
-  final String props_username = "";
-  final String props_password = "";
-  const AboutPage({Key? key, username, password}) : super(key: key);
+  String username = "";
+  String password = "";
+  // const AboutPage({Key? key}) : super(key: key);
+  AboutPage({Key? key, required this.username, required this.password})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,9 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
         body: Center(
             child: Column(children: <Widget>[
-      Text(
+      Text('USER: $username'),
+      Text('PASS: $password'),
+      const Text(
         "ff",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
@@ -29,6 +34,13 @@ class AboutPage extends StatelessWidget {
         onPressed: () {
           Navigator.pop(context);
         },
+      ),
+      ElevatedButton(
+        child: const Text('Open Dialog'),
+        onPressed: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => const DialogContract(),
+        ),
       ),
     ])));
   }
