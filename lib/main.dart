@@ -1,9 +1,11 @@
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/pages/about/about.dart';
 import 'package:flutter_app1/pages/camera/takeimg.dart';
+import 'package:flutter_app1/pages/listdata/listdata.dart';
 import 'package:flutter_app1/pages/rowcolumn/rowcolumn.dart';
 import "package:fluttertoast/fluttertoast.dart";
+import 'package:http/http.dart' as http;
 
 void main() => runApp(const MyApp());
 
@@ -54,6 +56,16 @@ class _MyHomePageState extends State<MyHomePage> {
         context,
         MaterialPageRoute(
             builder: (context) => const RowColumn(
+                // username: uusername,
+                // password: ppassword,
+                )));
+  }
+
+  void showlistdata() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const ListData(
                 // username: uusername,
                 // password: ppassword,
                 )));
@@ -124,6 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
             OutlinedButton(
               onPressed: showgrid,
               child: const Text("ShowGrid"),
+            ),
+            OutlinedButton(
+              onPressed: showlistdata,
+              child: const Text("ShowGetAPI"),
             ),
             //     OutlinedButton(
             //   onPressed: opencamera,
